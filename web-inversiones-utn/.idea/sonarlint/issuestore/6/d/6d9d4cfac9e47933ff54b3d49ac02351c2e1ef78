@@ -1,0 +1,43 @@
+
+[	java:S112/"FDefine and throw a dedicated exception instead of using a generic one.(‘ÍøÓ
+a	java:S112È"FDefine and throw a dedicated exception instead of using a generic one.(²àŒœıÿÿÿÿ
+t
+java:S2293%"YReplace the type specification in this constructor call with the diamond operator ("<>").(‚‰Ø¼ûÿÿÿÿ
+c	java:S116-"NRename this field "SLL" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Äêë
+h
+java:S3776/"RRefactor this method to reduce its Cognitive Complexity from 21 to the 15 allowed.(‘ÍøÓ
+‡
+java:S1130/"qRemove the declaration of thrown exception 'java.lang.Exception', as it cannot be thrown from constructor's body.(‘ÍøÓ
+N	java:S1061"9Replace this use of System.out or System.err by a logger.(œ’Ô²
+H
+java:S61261"2Replace this String concatenation with Text block.(œ’Ô²
+S	java:S1064"9Replace this use of System.out or System.err by a logger.(ğÑëóüÿÿÿÿ
+S	java:S1065"9Replace this use of System.out or System.err by a logger.(š€Ğˆÿÿÿÿÿ
+S	java:S106T"9Replace this use of System.out or System.err by a logger.(•çÜåıÿÿÿÿ
+N	java:S106["9Replace this use of System.out or System.err by a logger.(â¢¬É
+X	java:S125d"<This block of commented-out lines of code should be removed.(Ğ½áª8Û‰çÔ0
+V	java:S125l"<This block of commented-out lines of code should be removed.(Û©¨Ôÿÿÿÿÿ
+Q	java:S125t"<This block of commented-out lines of code should be removed.(µäÄì
+S	java:S106|"9Replace this use of System.out or System.err by a logger.(½ş‰Üûÿÿÿÿ
+Z
+java:S1155">Use isEmpty() to check whether the collection is empty or not.(‹ÅÒÿÿÿÿÿ
+O	java:S106–"9Replace this use of System.out or System.err by a logger.(òæıµ
+i
+java:S3776œ"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(î¤şÄ
+T
+java:S1854Å"=Remove this useless assignment to local variable "resultado".(±³ÑÊ
+Š
+java:S1130"nRemove the declaration of thrown exception 'java.io.IOException' which is a subclass of 'java.lang.Exception'.(èØãàıÿÿÿÿ
+—
+java:S1130"{Remove the declaration of thrown exception 'java.lang.IllegalAccessException' which is a subclass of 'java.lang.Exception'.(èØãàıÿÿÿÿ
+£
+java:S1130"†Remove the declaration of thrown exception 'java.lang.reflect.InvocationTargetException' which is a subclass of 'java.lang.Exception'.(èØãàıÿÿÿÿ
+‘
+java:S1130"uRemove the declaration of thrown exception 'javax.print.PrintException' which is a subclass of 'java.lang.Exception'.(èØãàıÿÿÿÿ
+T	java:S106¦"9Replace this use of System.out or System.err by a logger.(––ªŒøÿÿÿÿ
+O	java:S106¨"9Replace this use of System.out or System.err by a logger.(µ‰Æô
+E
+java:S1481Å".Remove this unused "resultado" local variable.(±³ÑÊ
+R	java:S125Ê"<This block of commented-out lines of code should be removed.(ÚûËÆ
+W	java:S125Ï"<This block of commented-out lines of code should be removed.(ÜÀßÌøÿÿÿÿ
+O	java:S106Ö"9Replace this use of System.out or System.err by a logger.(óÎè–
