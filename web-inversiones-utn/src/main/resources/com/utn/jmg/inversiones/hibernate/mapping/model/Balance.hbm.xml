@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 26-sep-2017 12:39:56 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.utn.jmg.inversiones.dao.entity.BalanceEntity" table="balance" optimistic-lock="version">
+        <id name="id" type="java.lang.Long">
+            <column name="id_balance" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="empresa" class="com.utn.jmg.inversiones.model.Empresa" fetch="select">
+            <column name="id_empresa" not-null="true" />
+        </many-to-one>
+        <property name="fechaComienzoPeriodo" type="date">
+            <column name="fecha_comienzo" length="10" not-null="true" />
+        </property>
+        <property name="fechaFinPeriodo" type="date">
+            <column name="fecha_Cierre" length="10" not-null="true" />
+        </property>
+        <set name="cuentas" table="cuenta_valor" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_balance" not-null="true" />
+            </key>
+            <one-to-many class="com.utn.jmg.inversiones.dao.entity.CuentaValorEntity" />
+        </set>
+        
+        <property name="periodo" type="string"
+			formula=" concat( LPAD( DAYOFMONTH(fecha_Comienzo),2,'0'),'/', LPAD( MONTH(fecha_Comienzo),2,'0') ,'/',YEAR(fecha_Comienzo) , ' - ', LPAD( DAYOFMONTH(fecha_Cierre),2,'0'),'/', LPAD( MONTH(fecha_Cierre),2,'0') ,'/',YEAR(fecha_Cierre) ) ">
+		</property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<package name="condicion" namespace="/condicion" extends="default">
+		<action name="guardarCondicionTaxativa" class="com.utn.jmg.inversiones.controller.CondicionController"
+			method="guardarCondicionTaxativaDeMetodologia">
+			<result type="json">
+				<param name="noCache">true</param>
+				<param name="excludeNullProperties">true</param>
+				<param name="root">resultado</param>
+			</result>
+		</action>
+
+		<action name="modificarCondicionTaxativa" class="com.utn.jmg.inversiones.controller.CondicionController"
+			method="modificarCondicionTaxativaDeMetodologia">
+			<result type="json">
+				<param name="noCache">true</param>
+				<param name="excludeNullProperties">true</param>
+				<param name="root">resultado</param>
+			</result>
+		</action>
+
+		<action name="eliminarCondicionTaxativa" class="com.utn.jmg.inversiones.controller.CondicionController"
+			method="eliminarCondicionTaxativaDeMetodologia">
+			<result type="json">
+				<param name="noCache">true</param>
+				<param name="excludeNullProperties">true</param>
+				<param name="root">resultado</param>
+			</result>
+		</action>
+
+		<action name="guardarCondicionPriorizable" class="com.utn.jmg.inversiones.controller.CondicionController"
+			method="guardarCondicionPriorizableDeMetodologia">
+			<result type="json">
+				<param name="noCache">true</param>
+				<param name="excludeNullProperties">true</param>
+				<param name="root">resultado</param>
+			</result>
+		</action>
+
+		<action name="modificarCondicionPriorizable" class="com.utn.jmg.inversiones.controller.CondicionController"
+			method="modificarCondicionPriorizableDeMetodologia">
+			<result type="json">
+				<param name="noCache">true</param>
+				<param name="excludeNullProperties">true</param>
+				<param name="root">resultado</param>
+			</result>
+		</action>
+
+		<action name="eliminarCondicionPriorizable" class="com.utn.jmg.inversiones.controller.CondicionController"
+			method="eliminarCondicionPriorizableDeMetodologia">
+			<result type="json">
+				<param name="noCache">true</param>
+				<param name="excludeNullProperties">true</param>
+				<param name="root">resultado</param>
+			</result>
+		</action>
+
+	</package>
+</struts>

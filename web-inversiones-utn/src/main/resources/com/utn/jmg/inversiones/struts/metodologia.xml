@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<package name="metodologia" namespace="/metodologia" extends="default">
+		<action name="guardar" class="com.utn.jmg.inversiones.controller.MetodologiaController"
+			method="guardar">
+			<result type="json">
+				<param name="noCache">true</param>
+				<param name="excludeNullProperties">true</param>
+				<param name="root">resultado</param>
+			</result>
+		</action>
+
+		<action name="modificar" class="com.utn.jmg.inversiones.controller.MetodologiaController"
+			method="modificar">
+			<result type="json">
+				<param name="noCache">true</param>
+				<param name="excludeNullProperties">true</param>
+				<param name="root">resultado</param>
+			</result>
+		</action>
+
+		<action name="eliminar" class="com.utn.jmg.inversiones.controller.MetodologiaController"
+			method="eliminar">
+			<result type="json">
+				<param name="noCache">true</param>
+				<param name="excludeNullProperties">true</param>
+				<param name="root">resultado</param>
+			</result>
+		</action>
+
+		<action name="buscar" class="com.utn.jmg.inversiones.controller.MetodologiaController"
+			method="buscarMetodologia">
+			<result type="json">
+				<param name="noCache">true</param>
+				<param name="excludeNullProperties">true</param>
+				<param name="root">resultado</param>
+			</result>
+		</action>
+
+		<action name="aplicarCondicionesTaxativas" class="com.utn.jmg.inversiones.controller.MetodologiaController"
+			method="aplicarCondicionesTaxativas">
+			<result type="json">
+				<param name="noCache">true</param>
+				<param name="excludeNullProperties">true</param>
+				<param name="root">resultado</param>
+			</result>
+		</action>
+
+		<action name="aplicarCondicionPriorizable" class="com.utn.jmg.inversiones.controller.MetodologiaController"
+			method="aplicarCondicionPriorizable">
+			<result type="json">
+				<param name="noCache">true</param>
+				<param name="excludeNullProperties">true</param>
+				<param name="root">resultado</param>
+			</result>
+		</action>
+
+		<action name="todas" class="com.utn.jmg.inversiones.controller.MetodologiaController"
+			method="obtenerTodasLasMetodologias">
+			<result type="json">
+				<param name="noCache">true</param>
+				<param name="excludeNullProperties">true</param>
+				<param name="root">resultado</param>
+			</result>
+		</action>
+
+		<action name="crearForm" class="com.utn.jmg.inversiones.controller.MetodologiaController"
+			method="formCrearMetodologia">
+			<result name="success">/WEB-INF/pages/home/base.jsp?sendRedirect=/WEB-INF/pages/metodologia/metodologiaCrear.jsp
+			</result>
+		</action>
+		
+		<action name="buscarForm" class="com.utn.jmg.inversiones.controller.MetodologiaController"
+			method="formBuscarMetodologia">
+			<result name="success">/WEB-INF/pages/home/base.jsp?sendRedirect=/WEB-INF/pages/metodologia/metodologiaBuscar.jsp
+			</result>
+		</action>
+		
+		
+		<action name="formAplicarMetodologia" class="com.utn.jmg.inversiones.controller.MetodologiaController"
+			method="formAplicarMetodologia">
+			
+			<result name="success">/WEB-INF/pages/home/base.jsp?sendRedirect=/WEB-INF/pages/metodologia/metodologiaAplicar.jsp
+			</result>
+		</action>
+		
+		<action name="modificarForm" class="com.utn.jmg.inversiones.controller.MetodologiaController"
+			method="formModificarMetodologia">
+			<result name="success">/WEB-INF/pages/home/base.jsp?sendRedirect=/WEB-INF/pages/metodologia/metodologiaModificar.jsp
+			</result>
+		</action>
+
+	</package>
+</struts>

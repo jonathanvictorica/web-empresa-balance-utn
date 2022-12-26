@@ -1,0 +1,78 @@
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 26-sep-2017 12:39:56 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+	<class name="com.utn.jmg.inversiones.dao.entity.CondicionTaxativaEntity"
+		table="condicion_taxativa">
+		<id name="idCondicionTaxativa" type="java.lang.Long">
+			<column name="id_condicion_taxativa" />
+			<generator class="identity" />
+		</id>
+
+		<discriminator column="disc" type="string" />
+		 <property name="discriminador" type="string"
+			formula="disc">
+		</property>
+
+		<many-to-one name="comparador"
+                     class="com.utn.jmg.inversiones.dao.entity.ComparadorEntity" fetch="select">
+			<column name="id_comparador" not-null="true" />
+		</many-to-one>
+		<many-to-one name="indicadorEconomico"
+                     class="com.utn.jmg.inversiones.dao.entity.IndicadorEconomicoEntity" fetch="select">
+			<column name="id_indicador_economico_comparador" not-null="true" />
+		</many-to-one>
+		<many-to-one name="metodologia"
+                     class="com.utn.jmg.inversiones.dao.entity.MetodologiaEntity" fetch="select" cascade="delete">
+			<column name="id_metodologia" not-null="true"  />
+		</many-to-one>
+		<property name="nombreCondicion" type="string">
+			<column name="nombre_condicion" length="60" not-null="true"
+				unique="true" />
+		</property>
+
+		<subclass discriminator-value="taxIndicador"
+			name="com.utn.jmg.inversiones.dao.entity.CondicionTaxativaIndicadorEconomicoEntity">
+			<join table="condicion_taxativa_indicador_economico">
+				<key column="id_condicion_taxativa_ind_ec" on-delete="cascade" property-ref="idCondicionTaxativa"></key>
+				<many-to-one name="indicadorEconomicoComparar"
+                             class="com.utn.jmg.inversiones.dao.entity.IndicadorEconomicoEntity" fetch="select">
+					<column name="id_indicador_economico" not-null="true" />
+				</many-to-one>
+			</join>
+		</subclass>
+
+
+
+
+		<subclass discriminator-value="taxValor"
+			name="com.utn.jmg.inversiones.dao.entity.CondicionTaxativaValorEntity">
+			<join table="condicion_taxativa_valor">
+				<key column="id_condicion_taxativa_valor"  on-delete="cascade" property-ref="idCondicionTaxativa"></key>
+				<property name="valor" type="big_decimal" >
+					<column name="valor" precision="15" not-null="true" />
+				</property>
+			</join>
+		</subclass>
+
+
+		<!-- <joined-subclass name="com.inversiones.dao.entity.CondicionTaxativaValorEntity" -->
+		<!-- table="condicion_taxativa_valor"> -->
+		<!-- <id name="idCondicionTaxativaValor" type="long"> -->
+		<!-- <column name="id_condicion_taxativa_valor" /> -->
+		<!-- <generator class="foreign"> -->
+		<!-- <param name="property">condicionTaxativa</param> -->
+		<!-- </generator> -->
+		<!-- </id> -->
+
+		<!-- </joined-subclass> -->
+
+	</class>
+
+
+
+
+
+
+
+</hibernate-mapping>

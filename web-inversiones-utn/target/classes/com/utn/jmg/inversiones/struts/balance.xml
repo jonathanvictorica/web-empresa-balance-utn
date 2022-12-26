@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<package name="balance" namespace="/balance" extends="default">
+		<action name="guardar" class="com.utn.jmg.inversiones.controller.BalanceController"
+			method="guardar">
+			<result type="json">
+				<param name="noCache">true</param>
+				<param name="excludeNullProperties">true</param>
+				<param name="root">resultado</param>
+			</result>
+		</action>
+
+
+		<action name="modificar" class="com.utn.jmg.inversiones.controller.BalanceController"
+			method="modificar">
+			<result type="json">
+				<param name="noCache">true</param>
+				<param name="excludeNullProperties">true</param>
+				<param name="root">resultado</param>
+			</result>
+		</action>
+
+
+		<action name="eliminar" class="com.utn.jmg.inversiones.controller.BalanceController"
+			method="eliminar">
+			<result type="json">
+				<param name="noCache">true</param>
+				<param name="excludeNullProperties">true</param>
+				<param name="root">resultado</param>
+			</result>
+		</action>
+
+		<action name="buscar" class="com.utn.jmg.inversiones.controller.BalanceController"
+			method="buscar">
+			<result type="json">
+				<param name="noCache">true</param>
+				<param name="excludeNullProperties">true</param>
+				<param name="root">resultado</param>
+			</result>
+		</action>
+
+		<action name="obtenerPeriodos" class="com.utn.jmg.inversiones.controller.BalanceController"
+			method="obtenerPeriodos">
+			<result type="json">
+				<param name="noCache">true</param>
+				<param name="excludeNullProperties">true</param>
+				<param name="root">resultado</param>
+			</result>
+		</action>
+
+		<action name="formCrearBalance" class="com.utn.jmg.inversiones.controller.BalanceController"
+			method="formCrearBalance">
+			<result name="success">/WEB-INF/pages/home/base.jsp?sendRedirect=/WEB-INF/pages/empresa/empresaDatos.jsp
+			</result>
+		</action>
+
+		<action name="verMenuBalance" class="com.utn.jmg.inversiones.controller.BalanceController"
+			method="verMenuBalance">
+			<result name="success">/WEB-INF/pages/home/base.jsp?sendRedirect=/WEB-INF/pages/empresa/empresaDatos.jsp
+			</result>
+		</action>
+
+		<action name="formVerPeriodos" class="com.utn.jmg.inversiones.controller.BalanceController"
+			method="formVerPeriodos">
+			<result name="success">/WEB-INF/pages/home/base.jsp?sendRedirect=/WEB-INF/pages/empresa/empresaDatos.jsp
+			</result>
+		</action>
+
+		<action name="formVerBalance" class="com.utn.jmg.inversiones.controller.BalanceController"
+			method="formVerBalance">
+			<result name="success">/WEB-INF/pages/home/base.jsp?sendRedirect=/WEB-INF/pages/empresa/empresaDatos.jsp
+			</result>
+		</action>
+
+
+	</package>
+</struts>

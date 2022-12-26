@@ -1,0 +1,16 @@
+.form-horizontal {
+	margin-top: 20px;
+}
+label{
+	margin-top: 5px;
+}
+
+
+.botones {
+	text-align: center;
+}
+
+.botones button {
+	/*margin: 10px 5px 0 5px;*/
+}
+

@@ -1,0 +1,33 @@
+form {
+	margin-top: 20px;
+}
+label{
+	margin-top: 5px;
+}
+
+.botones {
+	text-align: center;
+}
+
+.botones button {
+	margin: 10px 5px 0 5px;
+}
+
+#formCondTax{
+	margin-top: 20px;
+}
+
+#formCondTax .panel-body{
+	padding-top: 30px;
+}
+
+table th{
+	text-align: center;
+}
+.actions{
+	text-align: right;
+}
+.actions button{
+	padding-top: 3px;
+	padding-bottom: 5px;  
+}

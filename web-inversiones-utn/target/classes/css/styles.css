@@ -1,0 +1,82 @@
+/* **************** HEADER ******************* */
+header{
+	background-image:url('../img/fondo1.jpg');
+}
+header > div{
+	padding: 0 0 10px 0 !important;
+	margin: 10px 10px 10px 800px;
+}
+header #header-usuario{
+	margin: 10px 0 10px 0;
+	padding: 0;
+	font-size: 13px; 
+}
+header #header-usuario-datos-apellido{
+	margin-bottom: 0px; 
+	color: orange;
+}
+header #header-usuario-datos-nombre{
+	margin-bottom: 0px; 
+	color: black;
+}
+
+/* **************** MENU PRINCIPAL ******************* */
+
+#menuPrincipal{
+	margin-top: 10px;
+	padding: 0 10px 0 10px; 
+}
+
+#menuPrincipal .panel{
+	padding: 0;
+	margin: 0 0 10px 0;
+	border-left-width: 1px; 
+	border-right-width: 1px; 
+}
+
+#menuPrincipal .panel-heading{
+	padding: 3px 2px;
+	font-size: 13px; 
+	text-align: center; 
+	font-family: Arial Black; 
+	background-color: #a94442; 
+	/*color: white;*/	
+}
+#menuPrincipal .panel-body{
+	padding: 10px; 
+}
+#menuPrincipal .panel-body ul li a{
+	background-color: #848484 !important; 
+	padding: 2px !important; 
+	color: white !important; 
+	text-align: center !important; 
+	font-size: 13px; 
+	border: 1px #4f4f4f solid;	
+}
+/* **************** CUERPO PRINCIPAL ******************* */
+
+#contPrincipal{
+	margin: 10px 0;
+	padding: 0 10px; 
+}
+#contPrincipal .panel-heading{
+	padding: 3px 2px;
+	font-size: 13px; 
+	text-align: center; 
+	font-family: Arial Black; 
+	background-color: #a94442; 
+	/*color: white;*/
+}
+#contPrincipal .panel-body{
+	padding: 10px; 
+}
+/* **************** PIE CUERPO PRINCIPAL ******************* */
+
+#pieEntrada{
+	
+	margin: 0 0 0 10px;
+}
+#pieEntrada a{
+	font-size: 11px; 
+	font-family: Verdana;
+}

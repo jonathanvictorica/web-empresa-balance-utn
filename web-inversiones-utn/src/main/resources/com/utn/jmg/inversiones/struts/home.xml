@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<package name="home" namespace="/home" extends="default">
+		<action name="bienvenido" class="com.utn.jmg.inversiones.controller.HomeController"
+			method="bienvenido">
+			<result name="success">/WEB-INF/pages/home/base.jsp?sendRedirect=/WEB-INF/pages/home/inicio.jsp
+			</result>
+		</action>
+		
+		<action name="login" class="com.utn.jmg.inversiones.controller.HomeController"
+			method="verLogin">
+			<result name="success">/WEB-INF/pages/login/login.jsp
+			</result>
+		</action>
+
+
+		<action name="validarUsuario" class="com.utn.jmg.inversiones.controller.HomeController"
+			method="validarUsuario">
+			<result name="success" type="redirectAction">
+				<param name="actionName">bienvenido</param>
+			</result>
+			<result name="input">/WEB-INF/pages/login/login.jsp</result>
+		</action>
+
+	</package>
+
+
+</struts>

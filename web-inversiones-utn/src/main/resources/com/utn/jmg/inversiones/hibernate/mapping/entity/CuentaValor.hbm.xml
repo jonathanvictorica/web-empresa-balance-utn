@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 26-sep-2017 12:39:56 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.utn.jmg.inversiones.dao.entity.CuentaValorEntity" table="cuenta_valor" optimistic-lock="version">
+        <id name="idCuentaValor" type="java.lang.Long">
+            <column name="id_cuenta_valor" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="balance" class="com.utn.jmg.inversiones.dao.entity.BalanceEntity" fetch="select">
+            <column name="id_balance" not-null="true" />
+        </many-to-one>
+        <many-to-one name="cuenta" class="com.utn.jmg.inversiones.dao.entity.CuentaEntity" fetch="select">
+            <column name="id_cuenta" not-null="true" />
+        </many-to-one>
+        <property name="valor" type="big_decimal">
+            <column name="valor" precision="15" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
