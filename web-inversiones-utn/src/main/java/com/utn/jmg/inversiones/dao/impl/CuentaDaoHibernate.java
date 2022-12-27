@@ -1,40 +1,56 @@
 package com.utn.jmg.inversiones.dao.impl;
 
-import org.hibernate.Criteria;
-import org.hibernate.Session;
-import org.hibernate.criterion.Restrictions;
-
-import com.utn.jmg.inversiones.dao.ICuentaDao;
 import com.utn.jmg.inversiones.dao.entity.CuentaEntity;
+import com.utn.jmg.inversiones.dao.repo.ICuentaRepository;
 import com.utn.jmg.inversiones.exception.DaoException;
 import com.utn.jmg.inversiones.model.Cuenta;
+import org.springframework.stereotype.Component;
 
-public class CuentaDaoHibernate extends BaseDaoHibernate<CuentaEntity> implements ICuentaDao<Cuenta> {
+@Component
+public class CuentaDaoHibernate {
 
-	@Override
+
+	private final ICuentaRepository cuentaRepository;
+
+	public CuentaDaoHibernate(ICuentaRepository cuentaRepository) {
+		this.cuentaRepository = cuentaRepository;
+	}
+
 	public Cuenta findCuentaByNombre(String nombre) {
-		Session session = this.getOpenSession();
-		Criteria crit = session.createCriteria(CuentaEntity.class);
-		crit.add(Restrictions.eq("nombre", nombre));
-		CuentaEntity cuentaEntity = (CuentaEntity) crit.uniqueResult();
-		Cuenta cuenta = this.factoryModel.createCuenta(cuentaEntity);
-		session.close();
+		Cuenta cuenta = this.createCuenta(cuentaRepository.findTop1ByNombre(nombre));
 		return cuenta;
 	}
 
-	@Override
+	private Cuenta createCuenta(CuentaEntity cuenta) {
+		try {
+			Cuenta cuentaFactory = new Cuenta(cuenta.getNombre());
+			cuentaFactory.setId(cuenta.getIdIndicadorEconomico());
+			return cuentaFactory;
+		} catch (Exception e) {
+			return null;
+		}
+
+	}
+
 	public void guardar(Cuenta entity) throws DaoException {
-		this.guardarEntidad(this.entityFactory.createCuentaEntity(entity));
+		cuentaRepository.save(this.createCuentaEntity(entity));
 	}
 
-	@Override
+
 	public void modificar(Cuenta entity) throws DaoException {
-		this.modificarEntidad(this.entityFactory.createCuentaEntity(entity));
+		cuentaRepository.save(this.createCuentaEntity(entity));
 	}
 
-	@Override
+
 	public void eliminar(Cuenta entity) throws DaoException {
-		this.eliminarEntidad(this.entityFactory.createCuentaEntity(entity));
+		cuentaRepository.delete(entity.getId());
 	}
+
+
+	private CuentaEntity createCuentaEntity(Cuenta cuenta) {
+		CuentaEntity cuentaEntity = new CuentaEntity(cuenta.getId(), cuenta.getNombre(), cuenta.getCodigo());
+		return cuentaEntity;
+	}
+
 
 }

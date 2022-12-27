@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import com.utn.jmg.inversiones.dao.impl.CuentaDaoHibernate;
+import com.utn.jmg.inversiones.dao.impl.IndicadorDaoHibernate;
 import com.utn.jmg.inversiones.model.Cuenta;
 import com.utn.jmg.inversiones.model.Empresa;
 import com.utn.jmg.inversiones.model.Indicador;
@@ -12,8 +14,6 @@ import com.utn.jmg.inversiones.model.metodologia.CondicionTaxIndEconomico;
 import com.utn.jmg.inversiones.model.metodologia.CondicionTaxValor;
 import com.utn.jmg.inversiones.model.metodologia.CondicionTaxativa;
 import com.utn.jmg.inversiones.model.metodologia.TipoCondiciones;
-import com.utn.jmg.inversiones.dao.ICuentaDao;
-import com.utn.jmg.inversiones.dao.IIndicadorDao;
 import com.utn.jmg.inversiones.dao.entity.BalanceEntity;
 import com.utn.jmg.inversiones.dao.entity.CondicionPriorizableEntity;
 import com.utn.jmg.inversiones.dao.entity.CondicionTaxativaEntity;
@@ -30,13 +30,21 @@ import com.utn.jmg.inversiones.model.Balance;
 import com.utn.jmg.inversiones.model.IndicadorEconomico;
 import com.utn.jmg.inversiones.model.metodologia.Comparador;
 import com.utn.jmg.inversiones.model.metodologia.CondicionPriorizable;
-import com.utn.jmg.inversiones.service.impl.RepositorioIndicadoresNativos;
+import com.utn.jmg.inversiones.service.RepositorioIndicadoresNativos;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ModelFactory {
 
-	private ICuentaDao<Cuenta> cuentaDao;
-	private IIndicadorDao<Indicador> indicadorDao;
-	private RepositorioIndicadoresNativos repositorioIndicadoresNativos;
+	private final CuentaDaoHibernate cuentaDao;
+	private final IndicadorDaoHibernate indicadorDao;
+	private final RepositorioIndicadoresNativos repositorioIndicadoresNativos;
+
+	public ModelFactory(CuentaDaoHibernate cuentaDao, IndicadorDaoHibernate indicadorDao, RepositorioIndicadoresNativos repositorioIndicadoresNativos) {
+		this.cuentaDao = cuentaDao;
+		this.indicadorDao = indicadorDao;
+		this.repositorioIndicadoresNativos = repositorioIndicadoresNativos;
+	}
 
 	public Balance createBalance(BalanceEntity balance) {
 		if (balance == null)
@@ -67,16 +75,7 @@ public class ModelFactory {
 
 	}
 
-	public Cuenta createCuenta(CuentaEntity cuenta) {
-		try {
-			Cuenta cuentaFactory = new Cuenta(cuenta.getNombre());
-			cuentaFactory.setId(cuenta.getIdIndicadorEconomico());
-			return cuentaFactory;
-		} catch (Exception e) {
-			return null;
-		}
 
-	}
 
 	public Empresa createEmpresa(EmpresaEntity empresa) {
 		if (empresa == null)
@@ -167,37 +166,8 @@ public class ModelFactory {
 		return ind;
 	}
 
-	public Indicador createIndicador(IndicadorEntity indicador) {
-		if (indicador == null)
-			return null;
-		Indicador indicadorFactory = new Indicador(indicador.getNombre(), indicador.getFormula());
-		indicadorFactory.setId(indicador.getIdIndicadorEconomico());
-		indicadorFactory.setUsuario(indicador.getUsuario());
-		return indicadorFactory;
-	}
 
-	public ICuentaDao<Cuenta> getCuentaDao() {
-		return cuentaDao;
-	}
 
-	public void setCuentaDao(ICuentaDao<Cuenta> cuentaDao) {
-		this.cuentaDao = cuentaDao;
-	}
 
-	public IIndicadorDao<Indicador> getIndicadorDao() {
-		return indicadorDao;
-	}
-
-	public void setIndicadorDao(IIndicadorDao<Indicador> indicadorDao) {
-		this.indicadorDao = indicadorDao;
-	}
-
-	public RepositorioIndicadoresNativos getRepositorioIndicadoresNativos() {
-		return repositorioIndicadoresNativos;
-	}
-
-	public void setRepositorioIndicadoresNativos(RepositorioIndicadoresNativos repositorioIndicadoresNativos) {
-		this.repositorioIndicadoresNativos = repositorioIndicadoresNativos;
-	}
 
 }

@@ -1,53 +1,58 @@
 package com.utn.jmg.inversiones.dao.impl;
 
-import org.hibernate.Criteria;
-import org.hibernate.Session;
-import org.hibernate.criterion.CriteriaSpecification;
-import org.hibernate.criterion.Restrictions;
-
-import com.utn.jmg.inversiones.dao.ICondicionTaxativaDao;
+import com.utn.jmg.inversiones.dao.EntityFactory;
 import com.utn.jmg.inversiones.dao.entity.CondicionTaxativaEntity;
 import com.utn.jmg.inversiones.dao.entity.MetodologiaEntity;
+import com.utn.jmg.inversiones.dao.repo.ICondicionTaxativaRepository;
 import com.utn.jmg.inversiones.exception.DaoException;
+import com.utn.jmg.inversiones.model.factory.ModelFactory;
 import com.utn.jmg.inversiones.model.metodologia.CondicionTaxativa;
+import org.springframework.stereotype.Component;
 
-public class CondicionTaxativaDaoHibernate extends BaseDaoHibernate<CondicionTaxativaEntity> implements ICondicionTaxativaDao {
+@Component
+public class CondicionTaxativaDaoHibernate {
 
-	@Override
+
+	protected final ModelFactory factoryModel;
+	protected final EntityFactory entityFactory;
+
+	private final ICondicionTaxativaRepository condicionTaxativaRepository;
+
+	public CondicionTaxativaDaoHibernate(ModelFactory factoryModel, EntityFactory entityFactory, ICondicionTaxativaRepository condicionTaxativaRepository) {
+		this.factoryModel = factoryModel;
+		this.entityFactory = entityFactory;
+		this.condicionTaxativaRepository = condicionTaxativaRepository;
+	}
+
+
 	public void guardar(CondicionTaxativa entity) throws DaoException {
 		MetodologiaEntity metodologia = entityFactory.createMetodologiaEntity(entity.getMetodologia());
 		CondicionTaxativaEntity condicion = entityFactory.createCondicionTaxativaEntity(entity, metodologia);
-		this.guardarEntidad(condicion);
+		this.condicionTaxativaRepository.save(condicion);
 
 	}
 
-	@Override
+
 	public void modificar(CondicionTaxativa entity) throws DaoException {
 		MetodologiaEntity metodologia = entityFactory.createMetodologiaEntity(entity.getMetodologia());
 		CondicionTaxativaEntity condicion = entityFactory.createCondicionTaxativaEntity(entity, metodologia);
-		this.modificarEntidad(condicion);
+		this.condicionTaxativaRepository.save(condicion);
 
 	}
 
-	@Override
+
 	public void eliminar(CondicionTaxativa entity) throws DaoException {
-		MetodologiaEntity metodologia = entityFactory.createMetodologiaEntity(entity.getMetodologia());
-		CondicionTaxativaEntity condicion = entityFactory.createCondicionTaxativaEntity(entity, metodologia);
-		this.eliminarEntidad(condicion);
+		this.condicionTaxativaRepository.delete(entity.getId());
 
 	}
 
-	@Override
+
 	public CondicionTaxativa findByDescripcionByMetodologia(String nombreCondicion, Long idMetodologia) {
-		Session session = this.getOpenSession();
-		Criteria crit = session.createCriteria(CondicionTaxativaEntity.class);
-		crit.createAlias("metodologia", "met", CriteriaSpecification.INNER_JOIN);
-		crit.add(Restrictions.eq("nombreCondicion", nombreCondicion));
-		crit.add(Restrictions.eq("met.id", idMetodologia));
-		CondicionTaxativaEntity condicionTaxativaEntity = (CondicionTaxativaEntity) crit.uniqueResult();
+		CondicionTaxativaEntity condicionTaxativaEntity = condicionTaxativaRepository.findTop1ByNombreCondicionAndMetodologia_idMetodologia(nombreCondicion, idMetodologia);
 		CondicionTaxativa cond = this.factoryModel.createCondicionTaxativa(condicionTaxativaEntity, "");
-		session.close();
 		return cond;
 	}
+
+
 
 }

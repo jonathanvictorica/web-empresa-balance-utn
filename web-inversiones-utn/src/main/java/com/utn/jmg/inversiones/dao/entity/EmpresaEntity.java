@@ -9,13 +9,12 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-@Entity
-@Table
+//@Entity
+//@Table
 @Getter
 @Setter
 public class EmpresaEntity implements java.io.Serializable {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+
 	private Long idEmpresa;
 	private String cuit;
 	private String razonSocial;

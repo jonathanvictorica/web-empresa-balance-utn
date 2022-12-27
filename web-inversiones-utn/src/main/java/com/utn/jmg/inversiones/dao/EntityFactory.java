@@ -19,6 +19,9 @@ import com.utn.jmg.inversiones.dao.entity.IndicadorEconomicoEntity;
 import com.utn.jmg.inversiones.dao.entity.IndicadorEntity;
 import com.utn.jmg.inversiones.dao.entity.MetodologiaEntity;
 import com.utn.jmg.inversiones.dao.entity.UsuarioEntity;
+import com.utn.jmg.inversiones.dao.impl.ComparadorDaoHibernate;
+import com.utn.jmg.inversiones.dao.impl.CuentaDaoHibernate;
+import com.utn.jmg.inversiones.dao.impl.IndicadorDaoHibernate;
 import com.utn.jmg.inversiones.model.Balance;
 import com.utn.jmg.inversiones.model.Cuenta;
 import com.utn.jmg.inversiones.model.Empresa;
@@ -31,11 +34,19 @@ import com.utn.jmg.inversiones.model.metodologia.CondicionTaxIndEconomico;
 import com.utn.jmg.inversiones.model.metodologia.CondicionTaxValor;
 import com.utn.jmg.inversiones.model.metodologia.CondicionTaxativa;
 import com.utn.jmg.inversiones.model.metodologia.TipoCondiciones;
+import org.springframework.stereotype.Component;
 
+@Component
 public class EntityFactory {
-	private ICuentaDao cuentaDao;
-	private IIndicadorDao indicadorDao;
-	private IComparadorDao comparadorDao;
+	private final CuentaDaoHibernate cuentaDao;
+	private final IndicadorDaoHibernate indicadorDao;
+	private final ComparadorDaoHibernate comparadorDao;
+
+	public EntityFactory(CuentaDaoHibernate cuentaDao, IndicadorDaoHibernate indicadorDao, ComparadorDaoHibernate comparadorDao) {
+		this.cuentaDao = cuentaDao;
+		this.indicadorDao = indicadorDao;
+		this.comparadorDao = comparadorDao;
+	}
 
 	public BalanceEntity createBalanceEntity(Balance balance) {
 		EmpresaEntity empresaEntity = this.createEmpresaEntity(balance.getEmpresa());
@@ -178,28 +189,6 @@ public class EntityFactory {
 		return metodologiaEntity;
 	}
 
-	public ICuentaDao getCuentaDao() {
-		return cuentaDao;
-	}
 
-	public void setCuentaDao(ICuentaDao cuentaDao) {
-		this.cuentaDao = cuentaDao;
-	}
-
-	public IIndicadorDao getIndicadorDao() {
-		return indicadorDao;
-	}
-
-	public void setIndicadorDao(IIndicadorDao indicadorDao) {
-		this.indicadorDao = indicadorDao;
-	}
-
-	public IComparadorDao getComparadorDao() {
-		return comparadorDao;
-	}
-
-	public void setComparadorDao(IComparadorDao comparadorDao) {
-		this.comparadorDao = comparadorDao;
-	}
 
 }

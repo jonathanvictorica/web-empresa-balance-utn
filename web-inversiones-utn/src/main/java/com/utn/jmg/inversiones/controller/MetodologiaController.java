@@ -11,10 +11,7 @@ import com.utn.jmg.inversiones.model.dto.EmpresaResultado;
 import com.utn.jmg.inversiones.model.metodologia.CondicionFactory;
 import com.utn.jmg.inversiones.model.metodologia.CondicionPriorizable;
 import com.utn.jmg.inversiones.model.metodologia.CondicionTaxativa;
-import com.utn.jmg.inversiones.service.IBalanceService;
-import com.utn.jmg.inversiones.service.IEmpresaService;
-import com.utn.jmg.inversiones.service.IIndicadorService;
-import com.utn.jmg.inversiones.service.IMetodologiaService;
+import com.utn.jmg.inversiones.service.*;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -24,11 +21,19 @@ import com.utn.jmg.inversiones.model.dto.CondicionDto;
 public class MetodologiaController extends BaseController {
 
 	private static final long serialVersionUID = 1L;
-	private IMetodologiaService metodologiaService;
-	private IIndicadorService indicadorService;
-	private IBalanceService balanceService;
-	private IEmpresaService empresaService;
-	
+	private final MetodologiaService metodologiaService;
+	private final IndicadorService indicadorService;
+	private final BalanceService balanceService;
+	private final EmpresaService empresaService;
+
+	public MetodologiaController(UsuarioService usuarioService, MetodologiaService metodologiaService, IndicadorService indicadorService, BalanceService balanceService, EmpresaService empresaService) {
+		super(usuarioService);
+		this.metodologiaService = metodologiaService;
+		this.indicadorService = indicadorService;
+		this.balanceService = balanceService;
+		this.empresaService = empresaService;
+	}
+
 	public String aplicarCondicionesTaxativas() {
 		JSONObject datos = new JSONObject(getInput());
 		JSONObject result = new JSONObject();
@@ -320,36 +325,5 @@ public class MetodologiaController extends BaseController {
 		// condicionesPriorizable.toString(), gson.toJson(metodologia));
 	}
 
-	public IBalanceService getBalanceService() {
-		return balanceService;
-	}
-
-	public void setBalanceService(IBalanceService balanceService) {
-		this.balanceService = balanceService;
-	}
-
-	public IEmpresaService getEmpresaService() {
-		return empresaService;
-	}
-
-	public void setEmpresaService(IEmpresaService empresaService) {
-		this.empresaService = empresaService;
-	}
-
-	public IMetodologiaService getMetodologiaService() {
-		return metodologiaService;
-	}
-
-	public void setMetodologiaService(IMetodologiaService metodologiaService) {
-		this.metodologiaService = metodologiaService;
-	}
-
-	public IIndicadorService getIndicadorService() {
-		return indicadorService;
-	}
-
-	public void setIndicadorService(IIndicadorService indicadorService) {
-		this.indicadorService = indicadorService;
-	}
 
 }

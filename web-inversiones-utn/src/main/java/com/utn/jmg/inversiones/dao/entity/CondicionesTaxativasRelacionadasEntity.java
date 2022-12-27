@@ -8,8 +8,8 @@ import lombok.Setter;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-@Entity
-@Table
+//@Entity
+//@Table
 @Getter
 @Setter
 public class CondicionesTaxativasRelacionadasEntity  implements java.io.Serializable {

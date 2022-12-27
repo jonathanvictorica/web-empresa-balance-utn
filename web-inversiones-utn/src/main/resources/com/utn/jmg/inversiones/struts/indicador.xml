@@ -1,84 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE struts PUBLIC
-    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
-    "http://struts.apache.org/dtds/struts-2.0.dtd">
+		"-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+		"http://struts.apache.org/dtds/struts-2.5.dtd">
 <struts>
 
-	<package name="indicador" namespace="/indicador" extends="default">
 
-		<action name="guardar" class="com.utn.jmg.inversiones.controller.IndicadorController"
-			method="guardar">
-			<result type="json">
-				<param name="noCache">true</param>
-				<param name="excludeNullProperties">true</param>
-				<param name="root">resultado</param>
-			</result>
-		</action>
-
-		<action name="modificar" class="com.utn.jmg.inversiones.controller.IndicadorController"
-			method="modificar">
-			<result type="json">
-				<param name="noCache">true</param>
-				<param name="excludeNullProperties">true</param>
-				<param name="root">resultado</param>
-			</result>
-		</action>
-
-		<action name="eliminar" class="com.utn.jmg.inversiones.controller.IndicadorController"
-			method="eliminar">
-			<result type="json">
-				<param name="noCache">true</param>
-				<param name="excludeNullProperties">true</param>
-				<param name="root">resultado</param>
-			</result>
-		</action>
-
-		<action name="buscar" class="com.utn.jmg.inversiones.controller.IndicadorController"
-			method="buscar">
-			<result name="success">/WEB-INF/pages/home/base.jsp?sendRedirect=/WEB-INF/pages/indicador/indicadorModificar.jsp
-			</result>
-		</action>
-
-		<action name="aplicarIndicador" class="com.utn.jmg.inversiones.controller.IndicadorController"
-			method="aplicarIndicador">
-			<result type="json">
-				<param name="noCache">true</param>
-				<param name="excludeNullProperties">true</param>
-				<param name="root">resultado</param>
-			</result>
-		</action>
-
-		<action name="obtenerTodosLosIndicadores" class="com.utn.jmg.inversiones.controller.IndicadorController"
-			method="obtenerTodosLosIndicadores">
-			<result type="json">
-				<param name="noCache">true</param>
-				<param name="excludeNullProperties">true</param>
-				<param name="root">resultado</param>
-			</result>
-		</action>
-
-		<action name="crearForm" class="com.utn.jmg.inversiones.controller.IndicadorController"
-			method="formCrearIndicador">
-			<result name="success">/WEB-INF/pages/home/base.jsp?sendRedirect=/WEB-INF/pages/indicador/indicadorCrear.jsp
-			</result>
-		</action>
-		
-		<action name="modificarForm" class="com.utn.jmg.inversiones.controller.IndicadorController"
-			method="formModificarIndicador">
-			<result name="success">/WEB-INF/pages/home/base.jsp?sendRedirect=/WEB-INF/pages/indicador/indicadorModificar.jsp
-			</result>
-		</action>
-
-		<action name="buscarForm" class="com.utn.jmg.inversiones.controller.IndicadorController"
-			method="formBuscarIndicador">
-			<result name="success">/WEB-INF/pages/home/base.jsp?sendRedirect=/WEB-INF/pages/indicador/indicadorBuscar.jsp
-			</result>
-		</action>
-
-		<action name="aplicarForm" class="com.utn.jmg.inversiones.controller.IndicadorController"
-			method="formAplicarIndicador">
-			<result name="success">/WEB-INF/pages/home/base.jsp?sendRedirect=/WEB-INF/pages/indicador/indicadorAplicar.jsp
-			</result>
-		</action>
-	</package>
 </struts>

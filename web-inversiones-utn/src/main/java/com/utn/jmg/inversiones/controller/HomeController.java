@@ -3,17 +3,23 @@ package com.utn.jmg.inversiones.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.utn.jmg.inversiones.service.IUsuarioService;
+import com.utn.jmg.inversiones.service.UsuarioService;
 import org.json.JSONObject;
 
 import com.utn.jmg.inversiones.dao.entity.UsuarioEntity;
 
 public class HomeController extends BaseController {
 	private static final long serialVersionUID = 1L;
-	private IUsuarioService usuarioService;
+	private final UsuarioService usuarioService;
+
+	public HomeController(UsuarioService usuarioService) {
+		super(usuarioService);
+		this.usuarioService = usuarioService;
+	}
+
 
 	public String verLogin() throws Exception {
-		obtenerSesionGlobal().setAttribute("usuario", null);
+		obtenerSesionGlobal().put("usuario", null);
 		return SUCCESS;
 	}
 
@@ -24,7 +30,7 @@ public class HomeController extends BaseController {
 			String nickUsuario = datos.getString("nickUsuario");
 			String pass = datos.getString("pass");
 			usuarioService.validarUsuario(nickUsuario, pass);
-			obtenerSesionGlobal().setAttribute("usuario", nickUsuario);
+			obtenerSesionGlobal().put("usuario", nickUsuario);
 			return SUCCESS;
 			// redireccionar el action a bienvenido
 		} catch (Exception e) {
@@ -62,25 +68,19 @@ public class HomeController extends BaseController {
 		menuIndicador.add("Buscar Indicador");
 		menuPrincipal.add(menuIndicador);
 
-		UsuarioEntity usuario = usuarioService.findByNick((String) obtenerSesionGlobal().getAttribute("usuario"));
+		UsuarioEntity usuario = usuarioService.findByNick((String) obtenerSesionGlobal().get("usuario"));
 
-		obtenerSesionGlobal().setAttribute("menu", menuPrincipal);
-		obtenerSesionGlobal().setAttribute("nombre", usuario.getNombre());
-		obtenerSesionGlobal().setAttribute("apellido", usuario.getApellido());
+		obtenerSesionGlobal().put("menu", menuPrincipal);
+		obtenerSesionGlobal().put("nombre", usuario.getNombre());
+		obtenerSesionGlobal().put("apellido", usuario.getApellido());
 		
 		
 		String pathFoto = "'/img/users/"+usuario.getNombre().toLowerCase()+".jpg'";
-		obtenerSesionGlobal().setAttribute("pathFoto", pathFoto);
+		obtenerSesionGlobal().put("pathFoto", pathFoto);
 		// obtenerSesionGlobal().setAttribute("rol", usuario.get);
 		return SUCCESS;
 	}
 
-	public IUsuarioService getUsuarioService() {
-		return usuarioService;
-	}
 
-	public void setUsuarioService(IUsuarioService usuarioService) {
-		this.usuarioService = usuarioService;
-	}
 
 }

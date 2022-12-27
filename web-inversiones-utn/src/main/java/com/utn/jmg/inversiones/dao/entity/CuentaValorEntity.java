@@ -7,13 +7,12 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.math.BigDecimal;
 
-@Entity
-@Table
+//@Entity
+//@Table
 @Getter
 @Setter
 public class CuentaValorEntity implements java.io.Serializable, Comparable<CuentaValorEntity> {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+
 	private Long idCuentaValor;
 	private BalanceEntity balance;
 	private CuentaEntity cuenta;

@@ -7,14 +7,13 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-@Entity
-@Table
+//@Entity
+//@Table
 @Getter
 @Setter
 public class IndicadorEntity extends IndicadorEconomicoEntity  implements java.io.Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
      private Long idIndicador;
     
      private UsuarioEntity usuario;

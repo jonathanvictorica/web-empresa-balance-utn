@@ -8,13 +8,12 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.math.BigDecimal;
 
-@Entity
-@Table
+//@Entity
+//@Table
 @Getter
 @Setter
 public class CondicionTaxativaValorEntity extends CondicionTaxativaEntity implements java.io.Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
 
      private Long idCondicionTaxativaValor;   
      private BigDecimal valor;

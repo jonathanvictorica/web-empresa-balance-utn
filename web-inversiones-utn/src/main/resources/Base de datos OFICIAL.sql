@@ -1,4 +1,4 @@
-
+drop database INVERSIONES_OFICIAL;
 CREATE DATABASE INVERSIONES_OFICIAL;
 USE INVERSIONES_OFICIAL;
 
@@ -7,9 +7,9 @@ USE INVERSIONES_OFICIAL;
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-09-2017 a las 02:34:04
--- Versión del servidor: 10.1.21-MariaDB
--- Versión de PHP: 5.6.30
+-- Tiempo de generaciï¿½n: 30-09-2017 a las 02:34:04
+-- Versiï¿½n del servidor: 10.1.21-MariaDB
+-- Versiï¿½n de PHP: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -4226,7 +4226,7 @@ INSERT INTO `usuario` (`id_usuario`, `nick`, `clave`, `nombre`, `apellido`) VALU
 (5, 'Guillermo', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 'Guillermo', 'Fernandez');
 
 --
--- Índices para tablas volcadas
+-- ï¿½ndices para tablas volcadas
 --
 
 --

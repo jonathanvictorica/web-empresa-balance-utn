@@ -10,8 +10,8 @@ import javax.persistence.Table;
 import java.util.HashSet;
 import java.util.Set;
 
-@Entity
-@Table
+//@Entity
+//@Table
 @Getter
 @Setter
 public class CondicionPriorizableEntity  implements java.io.Serializable {

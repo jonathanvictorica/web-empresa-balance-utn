@@ -1,24 +1,28 @@
 package com.utn.jmg.inversiones.dao.impl;
 
-import org.hibernate.Criteria;
-import org.hibernate.Session;
-import org.hibernate.criterion.Restrictions;
-
-import com.utn.jmg.inversiones.dao.IComparadorDao;
 import com.utn.jmg.inversiones.dao.entity.ComparadorEntity;
+import com.utn.jmg.inversiones.dao.repo.IComparadorRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
-public class ComparadorDaoHibernate extends BaseDaoHibernate<ComparadorEntity> implements IComparadorDao {
+@Component
+public class ComparadorDaoHibernate   {
 
-	@Override
+
+private final IComparadorRepository comparadorRepository;
+
+	public ComparadorDaoHibernate(IComparadorRepository comparadorRepository) {
+		this.comparadorRepository = comparadorRepository;
+	}
+
 	public ComparadorEntity findComparadorByDescripcion(String descripcion) {
-		Session session = this.getOpenSession();
-		Criteria crit = session.createCriteria(ComparadorEntity.class);
-		crit.add(Restrictions.eq("descripcion", descripcion.toUpperCase()));
-		ComparadorEntity comparadorEntity = (ComparadorEntity) crit.uniqueResult();
-		session.close();
-		return comparadorEntity;
+
+		return comparadorRepository.findTop1ByDescripcion(descripcion);
 
 	}
+
+
 
 
 }

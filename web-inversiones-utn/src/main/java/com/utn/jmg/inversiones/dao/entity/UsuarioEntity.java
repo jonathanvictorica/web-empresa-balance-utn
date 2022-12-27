@@ -8,15 +8,14 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-@Entity
-@Table
+//@Entity
+//@Table
 @Getter
 @Setter
 public class UsuarioEntity  implements java.io.Serializable {
 
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
      private Long idUsuario;
      private String nick;
      private String clave;

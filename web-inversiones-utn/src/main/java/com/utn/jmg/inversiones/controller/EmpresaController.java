@@ -1,13 +1,18 @@
 package com.utn.jmg.inversiones.controller;
 
 import com.utn.jmg.inversiones.model.Empresa;
-import com.utn.jmg.inversiones.service.IEmpresaService;
+import com.utn.jmg.inversiones.service.EmpresaService;
+import com.utn.jmg.inversiones.service.UsuarioService;
 import org.json.JSONObject;
 
 public class EmpresaController extends BaseController {
 
-	private static final long serialVersionUID = 1L;
-	private IEmpresaService empresaService;
+	private final EmpresaService empresaService;
+
+	public EmpresaController(UsuarioService usuarioService, EmpresaService empresaService) {
+		super(usuarioService);
+		this.empresaService = empresaService;
+	}
 
 	public String buscarEmpresa() {
 		JSONObject datos = new JSONObject(this.resultado!=null && !this.resultado.isEmpty() ?  this.resultado : this.getInput());
@@ -43,13 +48,7 @@ public class EmpresaController extends BaseController {
 		
 	}
 
-	public IEmpresaService getEmpresaService() {
-		return empresaService;
-	}
 
-	public void setEmpresaService(IEmpresaService empresaService) {
-		this.empresaService = empresaService;
-	}
 
 	public String formBuscarEmpresa() {
 		return SUCCESS;

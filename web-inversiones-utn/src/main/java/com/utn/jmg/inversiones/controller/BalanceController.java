@@ -7,8 +7,9 @@ import java.util.List;
 import com.utn.jmg.inversiones.model.Balance;
 import com.utn.jmg.inversiones.model.Cuenta;
 import com.utn.jmg.inversiones.model.Empresa;
-import com.utn.jmg.inversiones.service.IBalanceService;
-import com.utn.jmg.inversiones.service.IEmpresaService;
+import com.utn.jmg.inversiones.service.BalanceService;
+import com.utn.jmg.inversiones.service.EmpresaService;
+import com.utn.jmg.inversiones.service.UsuarioService;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -17,9 +18,15 @@ import com.utn.jmg.inversiones.util.StringUtils;
 public class BalanceController extends BaseController {
 
 	private static final long serialVersionUID = 1L;
-	private IEmpresaService empresaService;
-	private IBalanceService balanceService;
-	
+	private final EmpresaService empresaService;
+	private final BalanceService balanceService;
+
+	public BalanceController(UsuarioService usuarioService, EmpresaService empresaService, BalanceService balanceService) {
+		super(usuarioService);
+		this.empresaService = empresaService;
+		this.balanceService = balanceService;
+	}
+
 
 	public String guardar() {
 		JSONObject datos = new JSONObject(getInput());
@@ -258,26 +265,5 @@ public class BalanceController extends BaseController {
 		}
 	}
 	
-	public IEmpresaService getEmpresaService() {
-		return empresaService;
-	}
-
-	public void setEmpresaService(IEmpresaService empresaService) {
-		this.empresaService = empresaService;
-	}
-
-	public IBalanceService getBalanceService() {
-		return balanceService;
-	}
-
-	public void setBalanceService(IBalanceService balanceService) {
-		this.balanceService = balanceService;
-	}
-
-	
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
 
 }

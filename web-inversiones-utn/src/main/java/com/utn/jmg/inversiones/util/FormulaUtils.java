@@ -14,10 +14,17 @@ import com.utn.jmg.inversiones.dao.entity.UsuarioEntity;
 import com.utn.jmg.inversiones.model.Cuenta;
 import com.utn.jmg.inversiones.model.Indicador;
 import com.utn.jmg.inversiones.model.IndicadorEconomico;
-import com.utn.jmg.inversiones.service.IIndicadorService;
-import com.utn.jmg.inversiones.service.impl.IndicadorService;
+import com.utn.jmg.inversiones.service.IndicadorService;
+import org.springframework.stereotype.Component;
 
+@Component
 public class FormulaUtils {
+
+	private static IndicadorService indicadorService = null;
+
+	public FormulaUtils(IndicadorService indicadorService) {
+		this.indicadorService = indicadorService;
+	}
 
 	public static void validarFormula(String formula) {
 		// try {
@@ -117,7 +124,6 @@ public class FormulaUtils {
 					Cuenta cuenta = new Cuenta(elementoUnitario.substring(2));
 					elementosFormulas.add(cuenta);
 				} else if (elementoUnitario.charAt(0) == 'i') {
-					IIndicadorService indicadorService = new IndicadorService();
 					Indicador indicador = indicadorService.buscarIndicador(elementoUnitario.substring(2),nickUsuario);
 					if(indicador.getUsuario()==null)
 						indicador.setUsuario(usuario);
@@ -137,7 +143,6 @@ public class FormulaUtils {
 				Cuenta cuenta = new Cuenta(elementoUnitario.substring(2));
 				elementosFormulas.add(cuenta);
 			} else if (elementoUnitario.charAt(0) == 'i') {
-				IIndicadorService indicadorService = new IndicadorService();
 				Indicador indicador = indicadorService.buscarIndicador(elementoUnitario.substring(2),nickUsuario);
 				if(indicador.getUsuario()==null)
 					indicador.setUsuario(usuario);

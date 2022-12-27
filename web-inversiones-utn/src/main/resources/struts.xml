@@ -1,36 +1,411 @@
-<!DOCTYPE struts PUBLIC   
- "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" 
- "http://struts.apache.org/dtds/struts-2.0.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+		"-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+		"http://struts.apache.org/dtds/struts-2.5.dtd">
 <struts>
-	<constant name="struts.enable.SlashesInActionNames" value="true" />
-	<constant name="struts.custom.i18n.resources" value="global" />
-	<constant name="struts.i18n.reload" value="false" />
-	<constant name="struts.i18n.encoding" value="UTF-8" />
-	<constant name="struts.devMode" value="false" />
-	<constant name="struts.configuration.xml.reload" value="false" />
-	<constant name="struts.devMode" value="false" />
+		<constant name="struts.enable.SlashesInActionNames" value="true" />
+		<constant name="struts.custom.i18n.resources" value="global" />
+		<constant name="struts.i18n.reload" value="false" />
+		<constant name="struts.i18n.encoding" value="UTF-8" />
+		<constant name="struts.devMode" value="false" />
+		<constant name="struts.configuration.xml.reload" value="false" />
+		<constant name="struts.devMode" value="false" />
 
 
-
+<!--	<constant name="struts.devMode" value="true"/>-->
 
 	<!-- Includes de packages del proyecto -->
-	<include file="com/utn/jmg/inversiones/struts/*.xml" />
+	<include file="com/utn/jmg/inversiones/struts/*.xml"/>
+	<package name="home" namespace="/home" extends="struts-default,json-default">
+		<action name="bienvenido" class="com.utn.jmg.inversiones.controller.HomeController"
+				method="bienvenido">
+			<result name="success">/WEB-INF/pages/home/base.jsp?sendRedirect=/WEB-INF/pages/home/inicio.jsp
+			</result>
+		</action>
+		<action name="login" class="com.utn.jmg.inversiones.controller.HomeController"
+				method="verLogin">
+			<result name="success">/src/main/
+			</result>
+		</action>
 
 
-<!--	&lt;!&ndash; Package default de struts2 &ndash;&gt;-->
-<!--	<package name="default" namespace="/" extends="struts-default,json-default">-->
+		<action name="validarUsuario" class="com.utn.jmg.inversiones.controller.HomeController"
+				method="validarUsuario">
+			<result name="success" type="redirectAction">
+				<param name="actionName">bienvenido</param>
+			</result>
+			<result name="input">/WEB-INF/pages/login/login.jsp</result>
+		</action>
 
-<!--		<global-results>-->
-<!--			<result name="exception">/WEB-INF/pages/error/error.jsp-->
-<!--			</result>-->
-<!--		</global-results>-->
 
-<!--		<global-exception-mappings>-->
-<!--			<exception-mapping exception="java.lang.Exception"-->
-<!--				result="exception" />-->
+	</package>
 
-<!--		</global-exception-mappings>-->
+	<package name="balance" namespace="/balance" extends="struts-default,json-default">
 
-<!--	</package>-->
+		<action name="guardar" class="com.utn.jmg.inversiones.controller.BalanceController"
+				method="guardar">
+			<result type="json">
+				<param name="noCache">true</param>
+				<param name="excludeNullProperties">true</param>
+				<param name="root">resultado</param>
+			</result>
+		</action>
 
+		<action name="modificar" class="com.utn.jmg.inversiones.controller.BalanceController"
+				method="modificar">
+			<result type="json">
+				<param name="noCache">true</param>
+				<param name="excludeNullProperties">true</param>
+				<param name="root">resultado</param>
+			</result>
+		</action>
+
+
+		<action name="eliminar" class="com.utn.jmg.inversiones.controller.BalanceController"
+				method="eliminar">
+			<result type="json">
+				<param name="noCache">true</param>
+				<param name="excludeNullProperties">true</param>
+				<param name="root">resultado</param>
+			</result>
+		</action>
+
+		<action name="buscar" class="com.utn.jmg.inversiones.controller.BalanceController"
+				method="buscar">
+			<result type="json">
+				<param name="noCache">true</param>
+				<param name="excludeNullProperties">true</param>
+				<param name="root">resultado</param>
+			</result>
+		</action>
+
+		<action name="obtenerPeriodos" class="com.utn.jmg.inversiones.controller.BalanceController"
+				method="obtenerPeriodos">
+			<result type="json">
+				<param name="noCache">true</param>
+				<param name="excludeNullProperties">true</param>
+				<param name="root">resultado</param>
+			</result>
+		</action>
+
+		<action name="formCrearBalance" class="com.utn.jmg.inversiones.controller.BalanceController"
+				method="formCrearBalance">
+			<result name="success">/WEB-INF/pages/home/base.jsp?sendRedirect=/WEB-INF/pages/empresa/empresaDatos.jsp
+			</result>
+		</action>
+
+		<action name="verMenuBalance" class="com.utn.jmg.inversiones.controller.BalanceController"
+				method="verMenuBalance">
+			<result name="success">/WEB-INF/pages/home/base.jsp?sendRedirect=/WEB-INF/pages/empresa/empresaDatos.jsp
+			</result>
+		</action>
+
+		<action name="formVerPeriodos" class="com.utn.jmg.inversiones.controller.BalanceController"
+				method="formVerPeriodos">
+			<result name="success">/WEB-INF/pages/home/base.jsp?sendRedirect=/WEB-INF/pages/empresa/empresaDatos.jsp
+			</result>
+		</action>
+
+		<action name="formVerBalance" class="com.utn.jmg.inversiones.controller.BalanceController"
+				method="formVerBalance">
+			<result name="success">/WEB-INF/pages/home/base.jsp?sendRedirect=/WEB-INF/pages/empresa/empresaDatos.jsp
+			</result>
+		</action>
+
+
+	</package>
+	<package name="condicion" namespace="/condicion" extends="struts-default,json-default">
+		<action name="guardarCondicionTaxativa" class="com.utn.jmg.inversiones.controller.CondicionController"
+				method="guardarCondicionTaxativaDeMetodologia">
+			<result type="json">
+				<param name="noCache">true</param>
+				<param name="excludeNullProperties">true</param>
+				<param name="root">resultado</param>
+			</result>
+		</action>
+
+		<action name="modificarCondicionTaxativa" class="com.utn.jmg.inversiones.controller.CondicionController"
+				method="modificarCondicionTaxativaDeMetodologia">
+			<result type="json">
+				<param name="noCache">true</param>
+				<param name="excludeNullProperties">true</param>
+				<param name="root">resultado</param>
+			</result>
+		</action>
+
+		<action name="eliminarCondicionTaxativa" class="com.utn.jmg.inversiones.controller.CondicionController"
+				method="eliminarCondicionTaxativaDeMetodologia">
+			<result type="json">
+				<param name="noCache">true</param>
+				<param name="excludeNullProperties">true</param>
+				<param name="root">resultado</param>
+			</result>
+		</action>
+
+		<action name="guardarCondicionPriorizable" class="com.utn.jmg.inversiones.controller.CondicionController"
+				method="guardarCondicionPriorizableDeMetodologia">
+			<result type="json">
+				<param name="noCache">true</param>
+				<param name="excludeNullProperties">true</param>
+				<param name="root">resultado</param>
+			</result>
+		</action>
+
+		<action name="modificarCondicionPriorizable" class="com.utn.jmg.inversiones.controller.CondicionController"
+				method="modificarCondicionPriorizableDeMetodologia">
+			<result type="json">
+				<param name="noCache">true</param>
+				<param name="excludeNullProperties">true</param>
+				<param name="root">resultado</param>
+			</result>
+		</action>
+
+		<action name="eliminarCondicionPriorizable" class="com.utn.jmg.inversiones.controller.CondicionController"
+				method="eliminarCondicionPriorizableDeMetodologia">
+			<result type="json">
+				<param name="noCache">true</param>
+				<param name="excludeNullProperties">true</param>
+				<param name="root">resultado</param>
+			</result>
+		</action>
+
+	</package>
+	<package name="empresa" namespace="/empresa" extends="struts-default,json-default">
+		<action name="buscarEmpresa" class="com.utn.jmg.inversiones.controller.EmpresaController"
+				method="buscarEmpresa">
+			<result name="success">/WEB-INF/pages/home/base.jsp?sendRedirect=/WEB-INF/pages/empresa/empresaDatos.jsp
+			</result>
+			<result name="input">/WEB-INF/pages/home/base.jsp?sendRedirect=/WEB-INF/pages/empresa/empresaBuscar.jsp
+			</result>
+		</action>
+
+		<action name="validarEmpresa" class="com.utn.jmg.inversiones.controller.EmpresaController"
+				method="buscarEmpresa">
+			<result type="json">
+				<param name="noCache">true</param>
+				<param name="excludeNullProperties">true</param>
+				<param name="root">resultado</param>
+			</result>
+		</action>
+
+		<action name="buscarForm" class="com.utn.jmg.inversiones.controller.EmpresaController"
+				method="formBuscarEmpresa">
+			<result name="success">/WEB-INF/pages/home/base.jsp?sendRedirect=/WEB-INF/pages/empresa/empresaBuscar.jsp
+			</result>
+
+		</action>
+	</package>
+
+	<package name="indicador" namespace="/indicador" extends="struts-default,json-default">
+
+		<action name="guardar" class="com.utn.jmg.inversiones.controller.IndicadorController"
+				method="guardar">
+			<result type="json">
+				<param name="noCache">true</param>
+				<param name="excludeNullProperties">true</param>
+				<param name="root">resultado</param>
+			</result>
+		</action>
+
+		<action name="modificar" class="com.utn.jmg.inversiones.controller.IndicadorController"
+				method="modificar">
+			<result type="json">
+				<param name="noCache">true</param>
+				<param name="excludeNullProperties">true</param>
+				<param name="root">resultado</param>
+			</result>
+		</action>
+
+		<action name="eliminar" class="com.utn.jmg.inversiones.controller.IndicadorController"
+				method="eliminar">
+			<result type="json">
+				<param name="noCache">true</param>
+				<param name="excludeNullProperties">true</param>
+				<param name="root">resultado</param>
+			</result>
+		</action>
+
+		<action name="buscar" class="com.utn.jmg.inversiones.controller.IndicadorController"
+				method="buscar">
+			<result name="success">
+				/WEB-INF/pages/home/base.jsp?sendRedirect=/WEB-INF/pages/indicador/indicadorModificar.jsp
+			</result>
+		</action>
+
+		<action name="aplicarIndicador" class="com.utn.jmg.inversiones.controller.IndicadorController"
+				method="aplicarIndicador">
+			<result type="json">
+				<param name="noCache">true</param>
+				<param name="excludeNullProperties">true</param>
+				<param name="root">resultado</param>
+			</result>
+		</action>
+
+		<action name="obtenerTodosLosIndicadores" class="com.utn.jmg.inversiones.controller.IndicadorController"
+				method="obtenerTodosLosIndicadores">
+			<result type="json">
+				<param name="noCache">true</param>
+				<param name="excludeNullProperties">true</param>
+				<param name="root">resultado</param>
+			</result>
+		</action>
+
+		<action name="crearForm" class="com.utn.jmg.inversiones.controller.IndicadorController"
+				method="formCrearIndicador">
+			<result name="success">/WEB-INF/pages/home/base.jsp?sendRedirect=/WEB-INF/pages/indicador/indicadorCrear.jsp
+			</result>
+		</action>
+
+		<action name="modificarForm" class="com.utn.jmg.inversiones.controller.IndicadorController"
+				method="formModificarIndicador">
+			<result name="success">
+				/WEB-INF/pages/home/base.jsp?sendRedirect=/WEB-INF/pages/indicador/indicadorModificar.jsp
+			</result>
+		</action>
+
+		<action name="buscarForm" class="com.utn.jmg.inversiones.controller.IndicadorController"
+				method="formBuscarIndicador">
+			<result name="success">
+				/WEB-INF/pages/home/base.jsp?sendRedirect=/WEB-INF/pages/indicador/indicadorBuscar.jsp
+			</result>
+		</action>
+
+		<action name="aplicarForm" class="com.utn.jmg.inversiones.controller.IndicadorController"
+				method="formAplicarIndicador">
+			<result name="success">
+				/WEB-INF/pages/home/base.jsp?sendRedirect=/WEB-INF/pages/indicador/indicadorAplicar.jsp
+			</result>
+		</action>
+	</package>
+
+	<package name="metodologia" namespace="/metodologia" extends="struts-default,json-default">
+		<action name="guardar" class="com.utn.jmg.inversiones.controller.MetodologiaController"
+				method="guardar">
+			<result type="json">
+				<param name="noCache">true</param>
+				<param name="excludeNullProperties">true</param>
+				<param name="root">resultado</param>
+			</result>
+		</action>
+
+		<action name="modificar" class="com.utn.jmg.inversiones.controller.MetodologiaController"
+				method="modificar">
+			<result type="json">
+				<param name="noCache">true</param>
+				<param name="excludeNullProperties">true</param>
+				<param name="root">resultado</param>
+			</result>
+		</action>
+
+		<action name="eliminar" class="com.utn.jmg.inversiones.controller.MetodologiaController"
+				method="eliminar">
+			<result type="json">
+				<param name="noCache">true</param>
+				<param name="excludeNullProperties">true</param>
+				<param name="root">resultado</param>
+			</result>
+		</action>
+
+		<action name="buscar" class="com.utn.jmg.inversiones.controller.MetodologiaController"
+				method="buscarMetodologia">
+			<result type="json">
+				<param name="noCache">true</param>
+				<param name="excludeNullProperties">true</param>
+				<param name="root">resultado</param>
+			</result>
+		</action>
+
+		<action name="aplicarCondicionesTaxativas" class="com.utn.jmg.inversiones.controller.MetodologiaController"
+				method="aplicarCondicionesTaxativas">
+			<result type="json">
+				<param name="noCache">true</param>
+				<param name="excludeNullProperties">true</param>
+				<param name="root">resultado</param>
+			</result>
+		</action>
+
+		<action name="aplicarCondicionPriorizable" class="com.utn.jmg.inversiones.controller.MetodologiaController"
+				method="aplicarCondicionPriorizable">
+			<result type="json">
+				<param name="noCache">true</param>
+				<param name="excludeNullProperties">true</param>
+				<param name="root">resultado</param>
+			</result>
+		</action>
+
+		<action name="todas" class="com.utn.jmg.inversiones.controller.MetodologiaController"
+				method="obtenerTodasLasMetodologias">
+			<result type="json">
+				<param name="noCache">true</param>
+				<param name="excludeNullProperties">true</param>
+				<param name="root">resultado</param>
+			</result>
+		</action>
+
+		<action name="crearForm" class="com.utn.jmg.inversiones.controller.MetodologiaController"
+				method="formCrearMetodologia">
+			<result name="success">
+				/WEB-INF/pages/home/base.jsp?sendRedirect=/WEB-INF/pages/metodologia/metodologiaCrear.jsp
+			</result>
+		</action>
+
+		<action name="buscarForm" class="com.utn.jmg.inversiones.controller.MetodologiaController"
+				method="formBuscarMetodologia">
+			<result name="success">
+				/WEB-INF/pages/home/base.jsp?sendRedirect=/WEB-INF/pages/metodologia/metodologiaBuscar.jsp
+			</result>
+		</action>
+
+
+		<action name="formAplicarMetodologia" class="com.utn.jmg.inversiones.controller.MetodologiaController"
+				method="formAplicarMetodologia">
+
+			<result name="success">
+				/WEB-INF/pages/home/base.jsp?sendRedirect=/WEB-INF/pages/metodologia/metodologiaAplicar.jsp
+			</result>
+		</action>
+
+		<action name="modificarForm" class="com.utn.jmg.inversiones.controller.MetodologiaController"
+				method="formModificarMetodologia">
+			<result name="success">
+				/WEB-INF/pages/home/base.jsp?sendRedirect=/WEB-INF/pages/metodologia/metodologiaModificar.jsp
+			</result>
+		</action>
+
+	</package>
+
+	<package name="pc" namespace="/pc" extends="struts-default,json-default">
+		<action name="obtenerTodasLasCuentas" class="com.utn.jmg.inversiones.controller.BalanceController"
+				method="obtenerTodasLasCuentas">
+			<result type="json">
+				<param name="noCache">true</param>
+				<param name="excludeNullProperties">true</param>
+				<param name="root">resultado</param>
+			</result>
+		</action>
+
+	</package>
+	<!--	&lt;!&ndash; Package default de struts2 &ndash;&gt;-->
+	<!--	<package name="default" namespace="/" extends="struts-default,json-default,json-default">-->
+
+	<!--		<global-results>-->
+	<!--			<result name="exception">/WEB-INF/pages/error/error.jsp-->
+	<!--			</result>-->
+	<!--		</global-results>-->
+
+	<!--		<global-exception-mappings>-->
+	<!--			<exception-mapping exception="java.lang.Exception"-->
+	<!--				result="exception" />-->
+
+	<!--		</global-exception-mappings>-->
+
+	<!--	</package>-->
+	<package name="json-default" extends="struts-default">
+		<result-types>
+			<result-type name="json" class="org.apache.struts2.json.JSONResult"/>
+		</result-types>
+		<interceptors>
+			<interceptor name="json" class="org.apache.struts2.json.JSONInterceptor"/>
+		</interceptors>
+	</package>
 </struts>  

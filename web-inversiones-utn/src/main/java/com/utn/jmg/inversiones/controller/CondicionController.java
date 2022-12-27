@@ -4,19 +4,28 @@ import com.utn.jmg.inversiones.model.Metodologia;
 import com.utn.jmg.inversiones.model.metodologia.CondicionFactory;
 import com.utn.jmg.inversiones.model.metodologia.CondicionPriorizable;
 import com.utn.jmg.inversiones.model.metodologia.CondicionTaxativa;
-import com.utn.jmg.inversiones.service.ICondicionPriorizableService;
-import com.utn.jmg.inversiones.service.ICondicionTaxativaService;
-import com.utn.jmg.inversiones.service.IMetodologiaService;
+import com.utn.jmg.inversiones.service.CondicionPriorizableService;
+import com.utn.jmg.inversiones.service.CondicionTaxativaService;
+import com.utn.jmg.inversiones.service.MetodologiaService;
+import com.utn.jmg.inversiones.service.UsuarioService;
 import org.json.JSONObject;
 
 import com.utn.jmg.inversiones.model.dto.CondicionDto;
 
 public class CondicionController extends BaseController {
 
-	private ICondicionTaxativaService condicionTaxativaService;
-	private ICondicionPriorizableService condicionPriorizableService;
-	private IMetodologiaService metodologiaService;
-	private CondicionFactory condicionFactory;
+	private final CondicionTaxativaService condicionTaxativaService;
+	private final CondicionPriorizableService condicionPriorizableService;
+	private final MetodologiaService metodologiaService;
+	private final CondicionFactory condicionFactory;
+
+	public CondicionController(UsuarioService usuarioService, CondicionTaxativaService condicionTaxativaService, CondicionPriorizableService condicionPriorizableService, MetodologiaService metodologiaService, CondicionFactory condicionFactory) {
+		super(usuarioService);
+		this.condicionTaxativaService = condicionTaxativaService;
+		this.condicionPriorizableService = condicionPriorizableService;
+		this.metodologiaService = metodologiaService;
+		this.condicionFactory = condicionFactory;
+	}
 
 	public String guardarCondicionTaxativaDeMetodologia() {
 		JSONObject datos = new JSONObject(this.resultado != null && !this.resultado.isEmpty() ? this.resultado : this.getInput());
@@ -199,36 +208,5 @@ public class CondicionController extends BaseController {
 		}
 	}
 
-	public ICondicionTaxativaService getCondicionTaxativaService() {
-		return condicionTaxativaService;
-	}
-
-	public void setCondicionTaxativaService(ICondicionTaxativaService condicionTaxativaService) {
-		this.condicionTaxativaService = condicionTaxativaService;
-	}
-
-	public ICondicionPriorizableService getCondicionPriorizableService() {
-		return condicionPriorizableService;
-	}
-
-	public void setCondicionPriorizableService(ICondicionPriorizableService condicionPriorizableService) {
-		this.condicionPriorizableService = condicionPriorizableService;
-	}
-
-	public IMetodologiaService getMetodologiaService() {
-		return metodologiaService;
-	}
-
-	public void setMetodologiaService(IMetodologiaService metodologiaService) {
-		this.metodologiaService = metodologiaService;
-	}
-
-	public CondicionFactory getCondicionFactory() {
-		return condicionFactory;
-	}
-
-	public void setCondicionFactory(CondicionFactory condicionFactory) {
-		this.condicionFactory = condicionFactory;
-	}
 
 }

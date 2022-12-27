@@ -1,22 +1,27 @@
 package com.utn.jmg.inversiones.dao.impl;
 
+import com.utn.jmg.inversiones.dao.entity.UsuarioEntity;
+import com.utn.jmg.inversiones.dao.repo.IUsuarioRepository;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
-import com.utn.jmg.inversiones.dao.IUsuarioDao;
-import com.utn.jmg.inversiones.dao.entity.UsuarioEntity;
+@Component
+public class UsuarioDaoHibernate {
 
-public class UsuarioDaoHibernate extends BaseDaoHibernate<UsuarioEntity> implements IUsuarioDao {
 
-	@Override
-	public UsuarioEntity findByNick(String nickUsuario) {
-		Session session = this.getOpenSession();
-		Criteria crit = session.createCriteria(UsuarioEntity.class);
-		crit.add(Restrictions.eq("nick", nickUsuario));
-		UsuarioEntity usuario = (UsuarioEntity) crit.uniqueResult();
-		session.close();
-		return usuario;
+	private final IUsuarioRepository usuarioRepository;
+
+	public UsuarioDaoHibernate(IUsuarioRepository usuarioRepository) {
+		this.usuarioRepository = usuarioRepository;
 	}
+
+	public UsuarioEntity findByNick(String nickUsuario) {
+		return usuarioRepository.findTop1ByNick(nickUsuario);
+	}
+
 
 }

@@ -23,21 +23,7 @@ public class GenerarTxtParser {
 
 	}
 	
-	public static void parserAntlr(String[] args) {
-		// System.out.println(args[3]);
 
-		TestRig testRig;
-
-		try {
-			testRig = new TestRig(args);
-			if (args.length >= 2) {
-				testRig.process();
-			}
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
 
 }
 
